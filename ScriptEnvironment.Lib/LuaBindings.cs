@@ -39,6 +39,18 @@ internal static class LuaBindings
     [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
     public static extern IntPtr lua_tolstring(IntPtr luaState, int n, UIntPtr length);
 
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void lua_pushcclosure(IntPtr luaState, IntPtr fn, int n);
+
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void lua_setglobal(IntPtr luaState, string name);
+
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void lua_pushnumber(IntPtr luaState, double d);
+
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate int LuaCFunction(IntPtr luaState);
+
     public static int LUA_MULTRET = -1;
 
     public static int lua_pcall(IntPtr luaState, int nargs, int nresults, int errfunc)
@@ -68,4 +80,10 @@ internal static class LuaBindings
     {
         return lua_tolstring(luaState, n, UIntPtr.Zero);
     }
+
+    public static void lua_pushcfunction(IntPtr luaState, IntPtr fn)
+    {
+        lua_pushcclosure(luaState, fn, 0);
+    }
+
 }
