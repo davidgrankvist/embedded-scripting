@@ -3,7 +3,7 @@
 namespace ScriptEnvironment.Lib;
 
 /// <summary>
-/// Subset of the Lua C API. For example usage, see https://www.lua.org/pil/24.1.html
+/// Subset of the Lua C API. For example usage, see https://www.lua.org/pil/24.1.html.
 /// </summary>
 internal static class LuaBindings
 {
