@@ -37,20 +37,75 @@ public class LuaEnvironment : IDisposable
         LuaBindings.lua_setglobal(luaState, CsFunctionTableName);
     }
 
-    public void RegisterFunction(Action fn, string name)
+    public void RegisterFunction(Delegate fn, string name)
     {
-        var cFn = ToPinnedFunction(fn);
+        var cFn = ToLuaCFunction(fn);
+        pinnedFunctions.Add(cFn);
         RegisterLuaCFunction(cFn, name);
     }
 
-    private LuaBindings.LuaCFunction ToPinnedFunction(Action fn)
+    private LuaBindings.LuaCFunction ToLuaCFunction(Delegate fn)
     {
+        /*
+         * Here is the idea:
+         *
+         * Take a generic delegate and use reflection to figure out the parameter/return types.
+         * Pop arguments from the Lua stack. Push results to the Lua stack.
+         */
         LuaBindings.LuaCFunction cFn = (state) =>
         {
-            fn();
-            return 0;
+            var method = fn.Method;
+            var parameters = method.GetParameters();
+            var args = new object[parameters.Length];
+
+            for (var i = 0; i < args.Length; i++)
+            {
+                var par = parameters[i];
+
+                if (par.ParameterType == typeof(double))
+                {
+                    args[i] = LuaBindings.lua_tonumber(luaState, i + 1);
+                }
+                else if (par.ParameterType == typeof(int))
+                {
+                    args[i] = LuaBindings.lua_tointeger(luaState, i + 1);
+                }
+                else if (par.ParameterType == typeof(string))
+                {
+                    args[i] = Marshal.PtrToStringAnsi(LuaBindings.lua_tostring(luaState, i + 1));
+                }
+                else
+                {
+                    throw new NotSupportedException($"Arguments of type {par.ParameterType} are not supported");
+                }
+            }
+
+            var result = method.Invoke(fn.Target, args);
+
+            if (method.ReturnType == typeof(double))
+            {
+                LuaBindings.lua_pushnumber(luaState, (double)result);
+                return 1;
+            }
+            else if (method.ReturnType == typeof(int))
+            {
+                LuaBindings.lua_pushinteger(luaState, (int)result);
+                return 1;
+            }
+            else if (method.ReturnType == typeof(string))
+            {
+                LuaBindings.lua_pushstring(luaState, (string)result);
+                return 1;
+            }
+            else if (method.ReturnType == typeof(void))
+            {
+                return 0;
+            }
+            else
+            {
+                throw new NotSupportedException($"Return type {method.ReturnType} not supported");
+            }
         };
-        pinnedFunctions.Add(cFn);
         return cFn;
     }
 

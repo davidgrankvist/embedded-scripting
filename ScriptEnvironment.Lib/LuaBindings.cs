@@ -60,6 +60,18 @@ internal static class LuaBindings
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int LuaCFunction(IntPtr luaState);
 
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern double lua_tonumberx(IntPtr luaState, int n, IntPtr isnum);
+
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int lua_tointegerx(IntPtr luaState, int n, IntPtr isnum);
+
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void lua_pushinteger(IntPtr luaState, int d);
+
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void lua_pushstring(IntPtr luaState, [MarshalAs(UnmanagedType.LPStr)] string name);
+
     public static int LUA_MULTRET = -1;
 
     public static int lua_pcall(IntPtr luaState, int nargs, int nresults, int errfunc)
@@ -100,4 +112,13 @@ internal static class LuaBindings
         lua_createtable(luaState, 0, 0);
     }
 
+    public static double lua_tonumber(IntPtr luaState, int n)
+    {
+        return lua_tonumberx(luaState, n, IntPtr.Zero);
+    }
+
+    public static int lua_tointeger(IntPtr luaState, int n)
+    {
+        return lua_tointegerx(luaState, n, IntPtr.Zero);
+    }
 }
