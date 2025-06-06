@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GraphicsSandbox.App.UI"
         mc:Ignorable="d"
         Title="Sandbox" Height="450" Width="800"
-        d:DataContext="local:SandboxViewModel">
+        d:DataContext="{d:DesignInstance Type=local:SandboxViewModel}">
     <Grid>
         <TabControl>
             <!--<TabItem Header="Graphics">

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GraphicsSandbox.App.UI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             d:DataContext="local:EditorViewModel">
+             d:DataContext="{d:DesignInstance Type=local:EditorViewModel}">
     <UserControl.DataContext>
         <local:EditorViewModel />
     </UserControl.DataContext>
@@ -26,8 +26,10 @@
             FontFamily="Consolas"
             Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"
          />
-        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
             <Button Height="30" Margin="10" Padding="3" Command="{Binding RunCodeCommand}">Run</Button>
+            <Button Height="30" Margin="0,10,10,10" Padding="3" Command="{Binding OpenLuaFileCommand}">Open file</Button>
+            <Button Height="30" Margin="0,10,10,10" Padding="3" Command="{Binding OpenLuaSampleCommand}">Open sample</Button>
         </StackPanel>
     </Grid>
 </UserControl>

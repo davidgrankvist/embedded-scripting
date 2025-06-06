@@ -1,4 +1,8 @@
-﻿using GraphicsSandbox.App.UI.Framework;
+﻿using System.IO;
+
+using GraphicsSandbox.App.UI.Framework;
+
+using Microsoft.Win32;
 
 namespace GraphicsSandbox.App.UI
 {
@@ -10,6 +14,13 @@ namespace GraphicsSandbox.App.UI
         {
             code = string.Empty;
             RunCodeCommand = new DelegateCommand(OnRunCode);
+            OpenLuaFileCommand = new DelegateCommand(() => OnOpenLuaFile(Environment.CurrentDirectory));
+            OpenLuaSampleCommand = new DelegateCommand(() =>
+            {
+                var exeDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                var samplesDirectory = Path.Combine(exeDirectory, "LuaSamples");
+                OnOpenLuaFile(samplesDirectory);
+            });
         }
 
         public string Code
@@ -23,6 +34,10 @@ namespace GraphicsSandbox.App.UI
 
         public DelegateCommand RunCodeCommand { get; }
 
+        public DelegateCommand OpenLuaFileCommand { get; }
+
+        public DelegateCommand OpenLuaSampleCommand { get; }
+
         private void OnRunCode()
         {
             var vm = new SandboxViewModel();
@@ -30,6 +45,25 @@ namespace GraphicsSandbox.App.UI
             var window = new SandboxView();
             window.DataContext = vm;
             window.Show();
+        }
+
+        private void OnOpenLuaFile(string? initialDirectory = null)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "Lua files (*.lua)|*.lua";
+            dialog.DefaultExt = ".lua";
+
+            if (initialDirectory != null)
+            {
+                dialog.InitialDirectory = initialDirectory;
+            }
+
+            if (dialog.ShowDialog() == true)
+            {
+                var filePath = dialog.FileName;
+                var code = File.ReadAllText(filePath);
+                Code = code;
+            }
         }
     }
 }
