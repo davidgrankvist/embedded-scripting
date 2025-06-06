@@ -14,10 +14,11 @@
             </TabItem>-->
             <TabItem Header="Console">
                 <TextBox
-                    IsReadOnly="{Binding IsReadonly}"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    AcceptsReturn="True"
                     VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto"
-                    Text="{Binding ConsoleOutput}" />
+                    Text="{Binding ConsoleText, UpdateSourceTrigger=PropertyChanged}" />
             </TabItem>
         </TabControl>
     </Grid>
