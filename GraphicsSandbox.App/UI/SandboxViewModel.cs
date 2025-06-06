@@ -36,6 +36,11 @@ namespace GraphicsSandbox.App.UI
             {
                 BeginConsoleRead();
                 var subStrLen = consoleText.Length - consoleReadStart - Environment.NewLine.Length;
+                if (subStrLen <= 0)
+                {
+                    return string.Empty;
+                }
+
                 var result = consoleText.Substring(consoleReadStart, subStrLen);
                 return result;
             }, "Readln");
@@ -103,6 +108,10 @@ namespace GraphicsSandbox.App.UI
 
         public void Dispose()
         {
+            if (!IsReadOnly)
+            {
+                EndConsoleRead();
+            }
             shouldExecute = false;
             luaTask?.Wait();
             lua.Dispose();
