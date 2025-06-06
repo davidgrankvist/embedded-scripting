@@ -30,6 +30,7 @@
             <Button Height="30" Margin="10" Padding="3" Command="{Binding RunCodeCommand}">Run</Button>
             <Button Height="30" Margin="0,10,10,10" Padding="3" Command="{Binding OpenLuaFileCommand}">Open file</Button>
             <Button Height="30" Margin="0,10,10,10" Padding="3" Command="{Binding OpenLuaSampleCommand}">Open sample</Button>
+            <Button Height="30" Margin="0,10,10,10" Padding="3" Command="{Binding SaveLuaFileAsCommand}">Save as</Button>
         </StackPanel>
     </Grid>
 </UserControl>
