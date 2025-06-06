@@ -48,6 +48,15 @@ internal static class LuaBindings
     [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
     public static extern void lua_pushnumber(IntPtr luaState, double d);
 
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern void lua_createtable(IntPtr luaState, int narr, int nrec);
+
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int lua_getglobal(IntPtr luaState, [MarshalAs(UnmanagedType.LPStr)] string name);
+
+    [DllImport(LuaLib, CallingConvention = CallingConvention.Cdecl)]
+    public static extern int lua_setfield(IntPtr luaState, int n, [MarshalAs(UnmanagedType.LPStr)] string name);
+
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int LuaCFunction(IntPtr luaState);
 
@@ -84,6 +93,11 @@ internal static class LuaBindings
     public static void lua_pushcfunction(IntPtr luaState, IntPtr fn)
     {
         lua_pushcclosure(luaState, fn, 0);
+    }
+
+    public static void lua_newtable(IntPtr luaState)
+    {
+        lua_createtable(luaState, 0, 0);
     }
 
 }
