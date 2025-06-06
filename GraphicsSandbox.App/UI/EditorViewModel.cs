@@ -25,7 +25,10 @@ namespace GraphicsSandbox.App.UI
 
         private void OnRunCode()
         {
+            var vm = new SandboxViewModel();
+            vm.Code = code;
             var window = new SandboxView();
+            window.DataContext = vm;
             window.Show();
         }
     }

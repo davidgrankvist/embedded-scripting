@@ -5,14 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicsSandbox.App.UI"
         mc:Ignorable="d"
-        Title="Sandbox" Height="450" Width="800">
+        Title="Sandbox" Height="450" Width="800"
+        d:DataContext="local:SandboxViewModel">
     <Grid>
         <TabControl>
-            <TabItem Header="Graphics">
+            <!--<TabItem Header="Graphics">
                 <TextBlock>Graphics is not implemented yet</TextBlock>
-            </TabItem>
+            </TabItem>-->
             <TabItem Header="Console">
-                <TextBlock>Console is not implemented yet</TextBlock>
+                <TextBox
+                    IsReadOnly="{Binding IsReadonly}"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto"
+                    Text="{Binding ConsoleOutput}" />
             </TabItem>
         </TabControl>
     </Grid>

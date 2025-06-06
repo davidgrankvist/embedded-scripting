@@ -20,8 +20,10 @@
             Grid.Row="0" 
             AcceptsReturn="True" 
             AcceptsTab="True" 
+            PreviewKeyDown="TextBox_ReplaceTabWithSpaces"
             VerticalScrollBarVisibility="Auto"
             HorizontalScrollBarVisibility="Auto"
+            FontFamily="Consolas"
             Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"
          />
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
