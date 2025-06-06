@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Common.targets" />
+    <PropertyGroup>
+        <TargetPlatformIdentifier>windows</TargetPlatformIdentifier>
+        <OutputType>WinExe</OutputType>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ScriptEnvironment.Lib\ScriptEnvironment.Lib.csproj" />
+    </ItemGroup>
+</Project>

@@ -425,7 +425,6 @@ test-results/
 # Mac bundle stuff
 *.dmg
 *.app
-!ConsoleHost.App/
 
 # content below from: https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
 # General
@@ -486,3 +485,6 @@ $RECYCLE.BIN/
 
 # Project native DLLs
 lib/*
+
+# Unignore projects ending with .App
+!*.App/
