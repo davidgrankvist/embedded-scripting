@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Common.targets" />
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ScriptEnvironment.Lib\ScriptEnvironment.Lib.csproj" />
+    </ItemGroup>
+</Project>
