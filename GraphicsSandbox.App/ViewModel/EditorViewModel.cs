@@ -1,5 +1,6 @@
 ﻿using System.IO;
 
+using GraphicsSandbox.App.Service;
 using GraphicsSandbox.App.View;
 using GraphicsSandbox.App.ViewModel.Framework;
 
@@ -45,9 +46,10 @@ namespace GraphicsSandbox.App.ViewModel
 
         private void OnRunCode()
         {
-            var vm = new SandboxViewModel();
-            vm.Code = code;
             var window = new SandboxView();
+            var vm = new SandboxViewModel(new Graphics2D(window));
+            vm.Code = code;
+
             window.DataContext = vm;
             window.Show();
         }

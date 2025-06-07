@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 using GraphicsSandbox.App.Service;
 using GraphicsSandbox.App.ViewModel;
@@ -37,11 +36,6 @@ namespace GraphicsSandbox.App.View
             {
                 vm.RunCodeInBackground(vm.Code);
             }
-
-            var graphics = new Graphics2D(this);
-            graphics.BeginDraw();
-            graphics.DrawTriangle(new Point(0, 0), new Point(100, 0), new Point(0, 100), Colors.LightBlue);
-            graphics.EndDraw();
         }
 
         protected override void OnClosed(EventArgs e)
