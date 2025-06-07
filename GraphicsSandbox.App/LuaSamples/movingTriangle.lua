@@ -1,4 +1,5 @@
 -- Here's a simple render loop that moves a triangle back and forth.
+-- There is also a clock you can use for timing.
 
 triangle = {
     a = { x = 0, y = 0 },
@@ -11,8 +12,12 @@ xmax = 200
 xmin = 0
 sign = 1
 speed = 5
+targetMsPerFrame = 16
+
+cs.ClockStart()
 
 while (cs.ShouldExecute()) do
+    frameStart = cs.ClockTicksMs()
 
     offset = speed * sign
     triangle.a.x = triangle.a.x + offset
@@ -25,11 +30,13 @@ while (cs.ShouldExecute()) do
         sign = -1
     end
 
-
     cs.BeginDraw()
     cs.DrawTriangle(triangle.a, triangle.b, triangle.c, triangle.color)
     cs.EndDraw()
 
-    -- super handwaved, but around 60 FPS if the rest is really quick
-    cs.Sleep(16)
+    ellapsed = cs.ClockTicksMs() - frameStart
+    delay = targetMsPerFrame - ellapsed
+    if (delay > 0) then
+        cs.Sleep(delay)
+    end
 end

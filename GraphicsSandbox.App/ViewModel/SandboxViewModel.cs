@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -21,6 +22,8 @@ namespace GraphicsSandbox.App.ViewModel
 
         private SemaphoreSlim consoleReadSem;
         private int consoleReadStart;
+
+        private Stopwatch sw;
 
         public SandboxViewModel(Graphics2D graphics)
         {
@@ -57,6 +60,17 @@ namespace GraphicsSandbox.App.ViewModel
                 var result = consoleText.Substring(consoleReadStart, subStrLen);
                 return result;
             }, "Readln");
+
+            lua.RegisterFunction(() =>
+            {
+                sw = new Stopwatch();
+                sw.Start();
+            }, "ClockStart");
+
+            lua.RegisterFunction(() =>
+            {
+                return (int)sw.Elapsed.TotalMilliseconds;
+            }, "ClockTicksMs");
         }
 
         private void RegisterGraphicsFunctions()
@@ -100,7 +114,11 @@ namespace GraphicsSandbox.App.ViewModel
                 }
                 catch (Exception e)
                 {
-                    Println("A C# call from Lua failed: " + e.InnerException);
+                    Println("A C# call from Lua failed: " + e);
+                    if (e.InnerException != null)
+                    {
+                        Println(e.InnerException.ToString());
+                    }
                 }
             });
         }
