@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace GraphicsSandbox.App.UI.Framework
+namespace GraphicsSandbox.App.ViewModel.Framework
 {
     class ViewModelBase : INotifyPropertyChanged
     {

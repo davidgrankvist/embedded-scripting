@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace GraphicsSandbox.App.UI.Framework
+namespace GraphicsSandbox.App.ViewModel.Framework
 {
     class DelegateCommand : ICommand
     {

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphicsSandbox.App"
-        xmlns:localUi="clr-namespace:GraphicsSandbox.App.UI"
+        xmlns:localUi="clr-namespace:GraphicsSandbox.App.View"
         mc:Ignorable="d"
         Title="Graphics Sandbox"
         Height="450" 

@@ -1,13 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
-namespace GraphicsSandbox.App.UI
+using GraphicsSandbox.App.Service;
+using GraphicsSandbox.App.ViewModel;
+
+namespace GraphicsSandbox.App.View
 {
     /// <summary>
     /// Interaction logic for SandboxView.xaml
     /// </summary>
-    public partial class SandboxView : Window
+    public partial class SandboxView : Window, ICanvas
     {
         public SandboxView()
         {
@@ -33,6 +37,11 @@ namespace GraphicsSandbox.App.UI
             {
                 vm.RunCodeInBackground(vm.Code);
             }
+
+            var graphics = new Graphics2D(this);
+            graphics.BeginDraw();
+            graphics.DrawTriangle(new Point(0, 0), new Point(100, 0), new Point(0, 100), Colors.LightBlue);
+            graphics.EndDraw();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -42,6 +51,16 @@ namespace GraphicsSandbox.App.UI
             {
                 vm.Dispose();
             }
+        }
+
+        public double CanvasWidth => ActualWidth;
+
+        public double CanvasHeight => ActualHeight;
+
+        public void UpdateImage(Image image)
+        {
+            GraphicsCanvas.Children.Clear();
+            GraphicsCanvas.Children.Add(image);
         }
     }
 }

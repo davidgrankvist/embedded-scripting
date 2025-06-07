@@ -1,8 +1,8 @@
-﻿using GraphicsSandbox.App.UI.Framework;
+﻿using GraphicsSandbox.App.ViewModel.Framework;
 
 using ScriptEnvironment.Lib;
 
-namespace GraphicsSandbox.App.UI
+namespace GraphicsSandbox.App.ViewModel
 {
     class SandboxViewModel : ViewModelBase, IDisposable
     {

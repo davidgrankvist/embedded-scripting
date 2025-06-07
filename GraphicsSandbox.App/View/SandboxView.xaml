@@ -1,17 +1,17 @@
-﻿<Window x:Class="GraphicsSandbox.App.UI.SandboxView"
+﻿<Window x:Class="GraphicsSandbox.App.View.SandboxView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GraphicsSandbox.App.UI"
+        xmlns:vm="clr-namespace:GraphicsSandbox.App.ViewModel"
         mc:Ignorable="d"
         Title="Sandbox" Height="450" Width="800"
-        d:DataContext="{d:DesignInstance Type=local:SandboxViewModel}">
+        d:DataContext="{d:DesignInstance Type=vm:SandboxViewModel}">
     <Grid>
         <TabControl>
-            <!--<TabItem Header="Graphics">
-                <TextBlock>Graphics is not implemented yet</TextBlock>
-            </TabItem>-->
+            <TabItem Header="Graphics">
+                <Canvas x:Name="GraphicsCanvas" />
+            </TabItem>
             <TabItem Header="Console">
                 <TextBox
                     x:Name="ConsoleTextBox"

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GraphicsSandbox.App.UI;
+namespace GraphicsSandbox.App.View;
 /// <summary>
 /// Interaction logic for MainView.xaml
 /// </summary>

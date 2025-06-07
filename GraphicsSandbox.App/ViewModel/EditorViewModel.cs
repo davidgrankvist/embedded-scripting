@@ -1,10 +1,11 @@
 ﻿using System.IO;
 
-using GraphicsSandbox.App.UI.Framework;
+using GraphicsSandbox.App.View;
+using GraphicsSandbox.App.ViewModel.Framework;
 
 using Microsoft.Win32;
 
-namespace GraphicsSandbox.App.UI
+namespace GraphicsSandbox.App.ViewModel
 {
     class EditorViewModel : ViewModelBase
     {
