@@ -4,6 +4,6 @@
         <OutputType>Exe</OutputType>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\ScriptEnvironment.Lib\ScriptEnvironment.Lib.csproj" />
+      <ProjectReference Include="..\EmbeddedScriptEnvironment.Lib\EmbeddedScriptEnvironment.Lib.csproj" />
     </ItemGroup>
 </Project>

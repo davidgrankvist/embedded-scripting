@@ -1,3 +1,3 @@
 @echo off
 
-del /Q bin\*
+del /Q /S bin\*

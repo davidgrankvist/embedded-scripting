@@ -4,10 +4,9 @@
         <TargetPlatformIdentifier>windows</TargetPlatformIdentifier>
         <OutputType>WinExe</OutputType>
         <UseWPF>true</UseWPF>
-        <LuaSamplesPath>$(SolutionDir)\assets\luaSamples</LuaSamplesPath>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\ScriptEnvironment.Lib\ScriptEnvironment.Lib.csproj" />
+        <ProjectReference Include="..\EmbeddedScriptEnvironment.Lib\EmbeddedScriptEnvironment.Lib.csproj" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="LuaSamples\*.lua">

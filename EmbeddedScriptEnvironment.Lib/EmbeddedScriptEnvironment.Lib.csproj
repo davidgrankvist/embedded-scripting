@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Common.targets" />
+    <PropertyGroup>
+        <NativeDllPath>LuaNativeLibrary\lua-5.4.2_Win64_dllw6_lib\lua54.dll</NativeDllPath>
+    </PropertyGroup>
+    <Target Name="CopyNativeDll" BeforeTargets="PreBuildEvent">
+        <Copy
+           SourceFiles="$(NativeDllPath)"
+           DestinationFiles="$(OutputPath)\lua.dll"
+           SkipUnchangedFiles="true" />
+    </Target>
+</Project>

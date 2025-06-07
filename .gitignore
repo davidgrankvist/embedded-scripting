@@ -483,8 +483,11 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-# Project native DLLs
-lib/*
-
 # Unignore projects ending with .App
 !*.App/
+
+# Ignore included native library files
+*.dll
+*.h
+*.hpp
+*.a
